@@ -7,25 +7,15 @@ ALWAYS
 	ACTION_IF ENGINE_IS ~bgee bg2ee iwdee~ BEGIN
 		COPY - ~weidu.conf~ ~.../weidu.conf~
 			READ_2DA_ENTRY 0 2 3 "lang_dir"
-		ACTION_DEFINE_ASSOCIATIVE_ARRAY charsetsTable BEGIN
-			"german" => "CP1252"
-			"english" => "CP1252"
-			"french" => "CP1252"
-			"italian" => "CP1252"
-			"polish" => "CP1250"
-			"russian" => "CP1251"
-			"castilian" => "CP1252"
-			"spanish" => "CP1252"
-		END
-		ACTION_DEFINE_ARRAY charsetsReloadArray BEGIN setup w_mule END
-		ACTION_DEFINE_ARRAY charsetsNoConvertArray BEGIN END
+		ACTION_DEFINE_ARRAY charsetsReloadArray BEGIN w_mule END
+		ACTION_DEFINE_ARRAY charsetsNoConvertArray BEGIN setup END
 		LAF ~HANDLE_CHARSETS~
 			INT_VAR
-			infer_charsets = 1
+                infer_charsets = 1
+                from_utf8 = 1
 			STR_VAR
 			tra_path = "w_packmule/tra"
 			iconv_path = "w_packmule/bin/win32/iconv" //available as part of the base system on OS X and GNU/Linux
-			charset_table = charsetsTable
 			reload_array = charsetsReloadArray
 			noconvert_array = charsetsNoConvertArray
 		END
@@ -41,7 +31,9 @@ LANGUAGE ~Italian~ ~italian~ ~w_packmule/tra/italian/setup.tra~
 LANGUAGE ~French~  ~french~  ~w_packmule/tra/french/setup.tra~
 									  ~w_packmule/tra/french/w_mule.tra~
 LANGUAGE ~Deutsch (Uebersetzung von Gerri)~  ~german~  ~w_packmule/tra/german/setup.tra~
-																		 ~w_packmule/tra/german/w_mule.tra~
+														~w_packmule/tra/german/w_mule.tra~
+LANGUAGE ~Chinese~ ~schinese~ ~w_packmule/tra/schinese/setup.tra~
+									  ~w_packmule/tra/schinese/w_mule.tra~														
 
 //bg2, bgt, tutu, ca
 BEGIN @1018
